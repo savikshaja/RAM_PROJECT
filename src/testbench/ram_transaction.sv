@@ -4,7 +4,6 @@ class ram_transaction;
   rand bit [4:0] address;
        bit [7:0]data_out;
 constraint wr_rd_constraint {{write_enb,read_enb} inside {[0:3]};}
-//constraint wr_not_equal_rd  {{write_enb,read_enb}!=2'b11;}
 
  virtual function ram_transaction copy();
   copy = new();
@@ -44,7 +43,6 @@ endclass
 
 class ram_transaction3 extends ram_transaction;
  constraint wr_not_equal_rd {{write_enb,read_enb}==2'b11;}
- constraint wr_rd_constraint {{write_enb,read_enb}==2'b11;}
  virtual function ram_transaction copy();
   ram_transaction3 copy3;
   copy3 = new();
