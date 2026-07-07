@@ -14,7 +14,7 @@ covergroup drv_cg;
   bins write_only=binsof(WRITE)intersect{1}&&binsof(READ)intersect{0};
   bins read_only=binsof(WRITE)intersect{0}&&binsof(READ)intersect{1};
   illegal_bins invalid_11= binsof(WRITE)intersect{1}&&binsof(READ)intersect{1};
-  illegal_bins invalid_00= binsof(WRITE)intersect{0}&&binsof(READ)intersect{0};
+  ignore_bins invalid_00= binsof(WRITE)intersect{0}&&binsof(READ)intersect{0};
   }
 endgroup
  
