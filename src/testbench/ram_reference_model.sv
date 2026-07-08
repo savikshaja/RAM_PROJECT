@@ -19,12 +19,18 @@ class ram_reference_model;
       mbx_dr.get(ref_trans);
       repeat(1) @(vif.ref_cb)
        begin 
-        if(ref_trans.write_enb&&!ref_trans.read_Enb)
+          if(ref_trans.write_enb&&!ref_trans.read_Enb)begin
          MEM[ref_trans.address]=ref_trans.data_in;
         $display("[%0t]REFERENCE MODEL DATA IN MEMORY MEM[ADDRESS]=%d",$time,MEM[ref_trans.address]);
-        if(ref_trans.read_enb&&!ref_trans.write)
+          end
+          if(ref_trans.read_enb&&!ref_trans.write) begin
          ref_trans.data_out=MEM[ref_trans.address];
         $display("[%0t]REFERENCE MODEL DATA OUT FROM MEMORY data_out=%d",$time,ref_trans.data_out);
+       end
+      else begin
+         ref_trans.data_out='hzz;
+        $display("[%0t]REFERENCE MODEL DATA OUT FROM MEMORY data_out=%d",$time,ref_trans.data_out);
+       end
        end
       mbx_rs.put(ref_trans);
      end 
